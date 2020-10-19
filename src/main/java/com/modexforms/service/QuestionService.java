@@ -30,5 +30,9 @@ public class QuestionService {
 	public void deleteQuestion(int id) {
 		this.questionRepository.deleteById(id);
 	}
+	
+	public void addQuestion(Question q) {
+		this.questionRepository.save(q);
+	}
 
 }

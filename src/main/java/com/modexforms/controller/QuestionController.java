@@ -1,13 +1,13 @@
 package com.modexforms.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.modexforms.entity.Question;
@@ -39,5 +39,10 @@ public class QuestionController {
 	public String deleteById(@PathVariable int id) {
 		this.service.deleteQuestion(id);
 		return "Question" + id + "deleted";
+	}
+	
+	@PostMapping(value="/q/post", consumes = "application/json", produces = "application/json")
+	public void addQuestion(@RequestBody Question q) {
+		 service.addQuestion(q);
 	}
 }
