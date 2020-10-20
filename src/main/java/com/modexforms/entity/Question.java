@@ -12,8 +12,12 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name="question")
-public class Question{
+public class Question implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
 	private int id;

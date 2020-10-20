@@ -7,16 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.modexforms.entity.Question;
+import com.modexforms.repository.QuestionInsertRepository;
 import com.modexforms.repository.QuestionRepository;
 
 @Service
 public class QuestionService {
 	
 	private QuestionRepository questionRepository;
+	private QuestionInsertRepository qR;
 	
 	@Autowired
-	public QuestionService(QuestionRepository questionRepository) {
+	public QuestionService(QuestionRepository questionRepository, QuestionInsertRepository qR) {
 		this.questionRepository = questionRepository;
+		this.qR = qR;
 	}
 	
 	public List<Question> getQuestions(){
@@ -33,6 +36,10 @@ public class QuestionService {
 	
 	public void addQuestion(Question q) {
 		this.questionRepository.save(q);
+	}
+	
+	public void insertQuestion(Question q) {
+		this.qR.insertWithQuery(q);
 	}
 
 }
